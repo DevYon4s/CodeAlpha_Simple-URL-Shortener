@@ -4,8 +4,10 @@ import "./App.css";
 function App() {
   const [url, setUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
+    setLoading(true);
     const response = await fetch("https://codealpha-simple-url-shortener-1.onrender.com/shorten", {
       method: "POST",
       headers: {
@@ -15,6 +17,7 @@ function App() {
     });
     const data = await response.json();
     setShortUrl(`https://codealpha-simple-url-shortener-1.onrender.com/${data.short_code}`);
+    setLoading(false);
   };
 
   return (
@@ -26,7 +29,9 @@ function App() {
         value={url}
         onChange={(e) => setUrl(e.target.value)}
       />
-      <button onClick={handleSubmit}>Shorten</button>
+      <button onClick={handleSubmit} disabled={loading}>
+        {loading ? "Shortening..." : "Shorten"}
+      </button>
       {shortUrl && (
         <div className="shortened-url">
           <p>Shortened URL:</p>
