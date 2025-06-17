@@ -6,7 +6,7 @@ function App() {
   const [shortUrl, setShortUrl] = useState("");
 
   const handleSubmit = async () => {
-    const response = await fetch("http://localhost:5000/shorten", {
+    const response = await fetch("https://codealpha-simple-url-shortener-1.onrender.com/shorten", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -14,7 +14,7 @@ function App() {
       body: JSON.stringify({ url }),
     });
     const data = await response.json();
-    setShortUrl(`http://localhost:5000/${data.short_code}`);
+    setShortUrl(`https://codealpha-simple-url-shortener-1.onrender.com/${data.short_code}`);
   };
 
   return (
