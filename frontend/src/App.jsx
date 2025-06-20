@@ -31,15 +31,20 @@ function App() {
     setShortUrl("");
     setShowEdit(false);
 
-    const response = await fetch("http://127.0.0.1:5000/shorten", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url }),
-    });
+    const response = await fetch(
+      "https://codealpha-simple-url-shortener-1.onrender.com/shorten",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url }),
+      }
+    );
     const data = await response.json();
     setLoading(false);
     if (data.exists) {
-      setShortUrl(`http://127.0.0.1:5000/${data.short_code}`);
+      setShortUrl(
+        `https://codealpha-simple-url-shortener-1.onrender.com/${data.short_code}`
+      );
       setError("This URL has already been shortened.");
     } else if (data.short_code) {
       setShortCode(data.short_code);
@@ -52,23 +57,28 @@ function App() {
   const handleSave = async () => {
     setLoading(true);
     setError("");
-    const response = await fetch("http://127.0.0.1:5000/save", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url, short_code: shortCode }),
-    });
+    const response = await fetch(
+      "https://codealpha-simple-url-shortener-1.onrender.com/save",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url, short_code: shortCode }),
+      }
+    );
     const data = await response.json();
     setLoading(false);
     if (data.error) {
       setError(data.error);
     } else if (data.short_code) {
-      setShortUrl(`http://127.0.0.1:5000/${data.short_code}`);
+      setShortUrl(
+        `https://codealpha-simple-url-shortener-1.onrender.com/${data.short_code}`
+      );
       setShowEdit(false);
     }
   };
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/status")
+    fetch("https://codealpha-simple-url-shortener-1.onrender.com/status")
       .then((res) => res.json())
       .then((data) => setTotalUrls(data.total_urls));
   }, [url, shortUrl]);
@@ -89,7 +99,7 @@ function App() {
         </button>
       ) : (
         <div style={{ marginTop: "20px" }}>
-          <label>Short Code:</label>
+          <label>https://codealpha-simple-url-shortener-1.onrender.com:</label>
           <input
             type="text"
             value={shortCode}
