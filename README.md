@@ -13,11 +13,11 @@ This project implements a simple URL shortener with a Flask backend and a React 
 
 1. Clone the project repository:
    ```bash
-   git clone https://github.com/DevYon4s/CodeAlpha_Simple-URL-Shortener.git
+   git clone https://github.com/DevYon4s/Simple-URL-Shortener.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd CodeAlpha_Simple-URL-Shortener
+   cd Simple-URL-Shortener
    ```
 
 ## Backend Setup
